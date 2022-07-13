@@ -14,10 +14,13 @@ resource "aws_instance" "server" {
   lifecycle {
     ignore_changes = [ami]
   }
-
+  user_data = <<EOF
+  #!/bin/bash
+  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+EOF
   tags = {
     Name    = "Bastion host"
-    Project = local.project
   }
 }
 

@@ -1,6 +1,4 @@
-variable "project" {
-  description = "Project tag."
-}
+
 
 variable "subnet_id" {
   description = "The VPC Subnet ID to launch in."
@@ -31,16 +29,16 @@ variable "internal_networks" {
   description = "Internal network CIDR blocks."
 }
 
-data "aws_ami" "centos" {
+data "aws_ami" "amazon-2" {
   most_recent = true
 
   filter {
-    name   = "product-code"
-    values = ["aw0evgkw8e5c1q413zgy5pjce"]
+    name = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-ebs"]
   }
-
-  owners = ["aws-marketplace"]
+  owners = ["amazon"]
 }
+
 
 data "aws_subnet" "public" {
   id = local.subnet_id
@@ -48,8 +46,7 @@ data "aws_subnet" "public" {
 
 locals {
   vpc_id        = data.aws_subnet.public.vpc_id
-  project       = var.project
-  ami_id        = data.aws_ami.centos.id
+  ami_id        = data.aws_ami.amazon-2.id
   disk_size     = var.disk_size
   subnet_id     = var.subnet_id
   ssh_key       = var.ssh_key
