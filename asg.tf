@@ -81,8 +81,3 @@ resource "aws_elb" "cf-assessment" {
     instance_protocol = "http"
   }
 }
-
-output "elb_dns_name" {
-  value       = aws_elb.cf-assessment.dns_name
-  description = "The domain name of the load balancer"
-}

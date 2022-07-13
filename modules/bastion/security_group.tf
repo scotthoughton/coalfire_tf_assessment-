@@ -1,5 +1,5 @@
 resource "aws_security_group" "bastion" {
-  name        = "Bastion host of ${local.project}"
+  name        = "Bastion host"
   description = "Allow SSH access to bastion host and outbound internet access"
   vpc_id      = local.vpc_id
 
@@ -7,9 +7,6 @@ resource "aws_security_group" "bastion" {
     create_before_destroy = true
   }
 
-  tags = {
-    Project = local.project
-  }
 }
 
 resource "aws_security_group_rule" "ssh" {

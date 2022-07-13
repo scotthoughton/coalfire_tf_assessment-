@@ -28,3 +28,16 @@ variable "bastion_key_pair" {
   description = "SSH Key Pair for Bastion hosts"
 }
 
+variable "elb_port" {
+  type        = string
+  description = "ALB port for App"
+  default = "80"
+}
+
+variable "server_port" {
+  type        = string
+  description = "Server port for App"
+  default = "80"
+}
+
+
