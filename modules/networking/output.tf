@@ -7,7 +7,7 @@ output "public_subnets_id" {
 }
 
 output "private_subnets_id" {
-  value = toset([aws_subnet.private_subnet.*.id])
+  value = toset([flatten([aws_subnet.private_subnet.*.id])])
 }
 
 output "default_sg_id" {
