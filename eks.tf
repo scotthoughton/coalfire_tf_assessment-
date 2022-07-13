@@ -37,7 +37,7 @@ resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
 resource "aws_iam_role_policy_attachment" "AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
   role       = aws_iam_role.NodeGroupRole.name
-}   
+}
 resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.NodeGroupRole.name
@@ -53,8 +53,8 @@ resource "aws_eks_cluster" "eks-cluster" {
   version  = "1.21"
 
   vpc_config {
-    subnet_ids          = flatten([ module.networking.public_subnets_id, module.networking.private_subnets_id ])
-    security_group_ids  = flatten(module.networking.security_groups_id)
+    subnet_ids         = flatten([module.networking.public_subnets_id, module.networking.private_subnets_id])
+    security_group_ids = flatten(module.networking.security_groups_id)
   }
 
   depends_on = [
@@ -66,7 +66,7 @@ resource "aws_eks_node_group" "node-ec2" {
   cluster_name    = aws_eks_cluster.eks-cluster.name
   node_group_name = "t3_micro-node_group"
   node_role_arn   = aws_iam_role.NodeGroupRole.arn
-  subnet_ids      = flatten( module.networking.private_subnets_id )
+  subnet_ids      = flatten(module.networking.private_subnets_id)
 
   scaling_config {
     desired_size = 2

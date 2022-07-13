@@ -7,7 +7,7 @@ locals {
 }
 
 module "networking" {
-  source               = "./tf_modules/networking"
+  source               = "./modules/networking"
   region               = var.region
   environment          = var.environment
   vpc_cidr             = var.vpc_cidr
