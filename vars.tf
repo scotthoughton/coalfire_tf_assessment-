@@ -22,3 +22,9 @@ variable "private_subnets_cidr" {
   description = "CIDR block for Private Subnet"
   default     = ["10.0.10.0/24"]
 }
+
+variable "bastion_key_pair" {
+  type        = string
+  description = "SSH Key Pair for Bastion hosts"
+}
+
