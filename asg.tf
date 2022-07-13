@@ -63,7 +63,7 @@ resource "aws_autoscaling_group" "asg-cf-assessment" {
 resource "aws_elb" "cf-assessment" {
   name               = "terraform-asg-cf-assessment"
   security_groups    = [aws_security_group.elb-sg.id]
-  availability_zones = data.aws_availability_zones.all.names
+  availability_zones = local.availability_zones
 
   health_check {
     target              = "HTTP:${var.server_port}/"
