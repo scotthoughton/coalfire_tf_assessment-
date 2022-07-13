@@ -5,6 +5,6 @@ module "bastion" {
   source            = "github.com/jetbrains-infra/terraform-aws-bastion-host"
   subnet_id         = each.key
   ssh_key           = var.bastion_key_pair
-  internal_networks = module.networking.private_subnets_id[each.key.index]
+  internal_networks = module.networking.private_subnets_id[each.index]
   project           = "myProject"
 }
