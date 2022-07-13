@@ -7,7 +7,7 @@ output "public_subnets_id" {
 }
 
 output "private_subnets_id" {
-  value = join(",",aws_subnet.private_subnet.*.id)
+  value = ["${aws_subnet.private_subnet.*.id}"]
 }
 
 output "default_sg_id" {
