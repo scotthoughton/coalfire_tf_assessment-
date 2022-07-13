@@ -7,7 +7,7 @@ output "public_subnets_id" {
 }
 
 output "private_subnets_id" {
-  type list(string)
+  type = list(string)
   value = ["${aws_subnet.private_subnet.*.id}"]
 }
 
