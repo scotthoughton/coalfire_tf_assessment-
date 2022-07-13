@@ -16,6 +16,7 @@ output "default_sg_id" {
 
 output "security_groups_ids" {
   value = toset([aws_security_group.default.id])
+}
 
 output "public_route_table" {
   value = aws_route_table.public.id
